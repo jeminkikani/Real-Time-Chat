@@ -4,7 +4,6 @@ import { gapi } from "gapi-script";
 import { useEffect, useState } from "react";
 import { registerUser } from "../apis/auth";
 import { validUser } from "../apis/auth";
-import { BsEmojiLaughing, BsEmojiExpressionless } from "react-icons/bs";
 import { toast } from "react-toastify";
 
 const defaultData = {
