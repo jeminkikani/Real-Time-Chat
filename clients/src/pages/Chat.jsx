@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import MessageHistory from '../components/MessageHistory';
 import io from "socket.io-client"
 import "./home.css"
-// import { fetchChats, setNotifications } from '../redux/chatsSlice';
+import { fetchChats, setNotifications } from '../redux/chatsSlice';
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 import { getChatName } from '../utils/logics';
@@ -34,7 +34,7 @@ function Chat(props) {
       const data = await sendMessage({ chatId: activeChat._id, message })
       socket.emit("new message", data)
       setMessages([...messages, data])
-      // dispatch(fetchChats())
+      dispatch(fetchChats())
     }
   }
 
@@ -67,19 +67,19 @@ function Chat(props) {
     selectedChatCompare = activeChat
 
   }, [activeChat])
-  // useEffect(() => {
-  //   socket.on("message recieved", (newMessageRecieved) => {
-  //     if ((!selectedChatCompare || selectedChatCompare._id) !== newMessageRecieved.chatId._id) {
-  //       if (!notifications.includes(newMessageRecieved)) {
-  //         dispatch(setNotifications([newMessageRecieved, ...notifications]))
-  //       }
-  //     }
-  //     else {
-  //       setMessages([...messages, newMessageRecieved])
-  //     }
-  //     dispatch(fetchChats())
-  //   })
-  // })
+  useEffect(() => {
+    socket.on("message recieved", (newMessageRecieved) => {
+      if ((!selectedChatCompare || selectedChatCompare._id) !== newMessageRecieved.chatId._id) {
+        if (!notifications.includes(newMessageRecieved)) {
+          dispatch(setNotifications([newMessageRecieved, ...notifications]))
+        }
+      }
+      else {
+        setMessages([...messages, newMessageRecieved])
+      }
+      dispatch(fetchChats())
+    })
+  })
   useEffect(() => {
     const isValid = async () => {
       const data = await validUser()
@@ -151,9 +151,6 @@ function Chat(props) {
               </div>
 
               <div className='border-x-[1px] border-b-[1px] bg-[#f8f9fa] border-[#aabac8] px-6 py-3 w-[360px] sm:w-[400px] md:w-[350px] lg:w-[400px] rounded-b-[10px] h-[50px]'>
-                {/* {
-                  isTyping ? <div>Loading</div> : ""
-                } */}
                 <div className='flex justify-between items-start'>
 
                   <div className='cursor-pointer' onClick={() => setShowPicker(!showPicker)}>
