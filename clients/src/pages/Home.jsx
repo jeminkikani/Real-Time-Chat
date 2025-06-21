@@ -18,7 +18,6 @@ import { setActiveChat } from '../redux/chatsSlice'
 import Group from '../components/Group'
 import Contacts from '../components/Contacts'
 import { Effect } from "react-notification-badge"
-// import NotificationBadge from 'react-notification-badge/lib/components/NotificationBadge';
 import NotificationBadge from 'react-notification-badge';
 import Search from '../components/group/Search'
 function Home() {

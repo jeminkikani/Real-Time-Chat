@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Model from '../components/Model';
-import { BsEmojiSmile, BsFillEmojiSmileFill } from "react-icons/bs"
 import { fetchMessages, sendMessage } from '../apis/messages';
 import { useEffect } from 'react';
 import MessageHistory from '../components/MessageHistory';
 import io from "socket.io-client"
 import "./home.css"
 import { fetchChats, setNotifications } from '../redux/chatsSlice';
-import Loading from '../components/ui/Loading';
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 import { getChatName } from '../utils/logics';
@@ -94,7 +92,7 @@ function Chat(props) {
   }, [])
   if (loading) {
     return <div className={props.className}>
-      <Loading />
+      {/* <Loading /> */}
     </div>
   }
   return (
@@ -153,14 +151,9 @@ function Chat(props) {
               </div>
 
               <div className='border-x-[1px] border-b-[1px] bg-[#f8f9fa] border-[#aabac8] px-6 py-3 w-[360px] sm:w-[400px] md:w-[350px] lg:w-[400px] rounded-b-[10px] h-[50px]'>
-                {/* {
-                  isTyping ? <div>Loading</div> : ""
-                } */}
                 <div className='flex justify-between items-start'>
 
                   <div className='cursor-pointer' onClick={() => setShowPicker(!showPicker)}>
-
-                    {showPicker ? <BsFillEmojiSmileFill className='w-[20px] h-[20px] text-[#ffb02e] border-[black]' /> : <BsEmojiSmile className='w-[20px] h-[20px]' />}
                   </div>
                   <button onClick={(e) => keyDownFunction(e)} className='bg-[#f8f9fa] border-[2px] border-[#d4d4d4] text-[14px] px-2 py-[3px] text-[#9e9e9e] font-medium rounded-[7px] -mt-1'>Send</button>
                 </div>

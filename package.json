@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "This is a real-time chat website that allows users to connect with each other and chat in real-time. It was built using the MERN stack (MongoDB, Express.js, React.js, and Node.js), Socket.io, Redux Toolkit, and Tailwind CSS.",
   "main": "index.js",
-  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.22.9",
     "@babel/core": "^7.22.9",
